@@ -54,6 +54,7 @@ import com.turtleplayer.playlist.Playlist;
 import com.turtleplayer.playlist.playorder.PlayOrderRandom;
 import com.turtleplayer.playlist.playorder.PlayOrderSorted;
 import com.turtleplayer.playlist.playorder.PlayOrderStrategy;
+import com.turtleplayer.playlist.playorder.SpeedSensor;
 import com.turtleplayer.preferences.AbstractKey;
 import com.turtleplayer.preferences.Keys;
 import com.turtleplayer.preferences.Preferences;
@@ -124,6 +125,7 @@ public class Player extends ListActivity
 	private PlayOrderStrategy standartPlayOrderStrategy; //default interactive next/prev strategy
 	private PlayOrderStrategy shufflePlayOrderStrategy;
 	private PlayOrderStrategy playOrderStrategy; //strategy after tracks is over, normally one of the above
+    private SpeedSensor speedSensor;
 
 	private Slides currSlide = Slides.NOW_PLAYING;
 
@@ -155,6 +157,7 @@ public class Player extends ListActivity
 		SetupSlides();
 		SetupList();
 		SetupPhoneHandlers();
+        SetupSpeedSensor();
 
 		resetLastTrack();
 	}
@@ -422,6 +425,14 @@ public class Player extends ListActivity
 		});
 	}
 
+
+    private void SetupSpeedSensor()
+    {
+        this.speedSensor = new SpeedSensor();
+        Thread sensorThread = new Thread(this.speedSensor);
+        sensorThread.start();
+    }
+
 	private void SetupObservers()
 	{
 
@@ -621,6 +632,11 @@ public class Player extends ListActivity
 				progressBar.setMax(lengthInMillis);
 				duration.setText(ConvertToMinutes(lengthInMillis));
 				tp.playlist.preferences.set(Keys.LAST_TRACK_PLAYED, track.getFullPath());
+                if (track.getSpeedName() == "slow") {
+                    speedButton.setImageDrawable(getResources().getDrawable(com.turtleplayerv2.R.drawable.slow));
+                } else {
+                    speedButton.setImageDrawable(getResources().getDrawable(com.turtleplayerv2.R.drawable.speed));
+                }
 			}
 
 			public void started()

@@ -27,6 +27,7 @@ public class Track extends FSobject implements Album, Artist, Genre, Song
 	private final Album album;
 	private final Genre genre;
 	private final Song song;
+    private final Speed speed;
 
 	public Track(
 					 Song song,
@@ -42,6 +43,7 @@ public class Track extends FSobject implements Album, Artist, Genre, Song
 		this.artist = artist;
 		this.album = album;
 		this.genre = genre;
+        this.speed = new SpeedDigest("slow");
 	}
 
 	public Track(
@@ -59,7 +61,8 @@ public class Track extends FSobject implements Album, Artist, Genre, Song
 		this.artist = artist;
 		this.album = album;
 		this.genre = genre;
-	}
+        this.speed = new SpeedDigest("slow");
+    }
 
 	public int GetNumber()
 	{
@@ -91,7 +94,12 @@ public class Track extends FSobject implements Album, Artist, Genre, Song
 		return album.getAlbumId();
 	}
 
-	public String getAlbumName()
+    public String getSpeedName()
+    {
+        return speed.getSpeedName();
+    }
+
+    public String getAlbumName()
 	{
 		return album.getAlbumName();
 	}
