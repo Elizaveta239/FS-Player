@@ -59,7 +59,12 @@ public class FormattedInstanceComparator implements Comparator<Instance>
 				return 5;
 			}
 
-			public Integer visit(Album album)
+            public Integer visit(SpeedDigest track)
+            {
+                return 5;
+            }
+
+            public Integer visit(Album album)
 			{
 				return 4;
 			}

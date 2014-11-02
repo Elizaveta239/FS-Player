@@ -146,6 +146,11 @@ public class DefaultAdapter<T extends Instance> extends ArrayAdapter<T>
 				return null;
 			}
 
+            public Object visit(SpeedDigest speed)
+            {
+                return null;
+            }
+
 			public Object visit(Album album)
 			{
 				icon.setImageResource(com.turtleplayerv2.R.drawable.album24);

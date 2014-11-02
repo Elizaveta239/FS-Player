@@ -24,6 +24,8 @@ public interface InstanceVisitor<R>
 
 	R visit(SongDigest track);
 
+    R visit(SpeedDigest speed);
+
 	R visit(Album album);
 
 	R visit(GenreDigest genre);

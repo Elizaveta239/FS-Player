@@ -53,7 +53,12 @@ class OverAllFormatter extends InstanceFormatter
 		return track.getSongName();
 	}
 
-	public String visit(Album album)
+    public String visit(SpeedDigest speed)
+    {
+        return speed.getSpeedName();
+    }
+
+    public String visit(Album album)
 	{
 		return album.getAlbumName();
 	}

@@ -263,6 +263,11 @@ public abstract class FileChooser implements TurtleDatabase.DbObserver
 				return database.getTracks(new FilterSet<Tables.Tracks>(getFilter(), trackFilter)).iterator().next();
 			}
 
+            public Track visit(SpeedDigest track)
+            {
+                return null;
+            }
+
 			public Track visit(Album album)
 			{
 				Filter<Tables.AlbumsReadable> filter = new FieldFilter<Tables.AlbumsReadable, Track, String>(Tables.AlbumsReadable.ALBUM, Operator.EQ, album.getAlbumId());
@@ -416,6 +421,11 @@ public abstract class FileChooser implements TurtleDatabase.DbObserver
 			{
 				throw new RuntimeException("not supported yet");
 			}
+
+            public Instance visit(SpeedDigest track)
+            {
+                throw new RuntimeException("not supported yet");
+            }
 
 			public Instance visit(Album album)
 			{

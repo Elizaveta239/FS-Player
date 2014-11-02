@@ -32,6 +32,11 @@ class ShortInstanceFormatter extends InstanceFormatter
 		return track.getSongName();
 	}
 
+    public String visit(SpeedDigest speed)
+    {
+        return speed.getSpeedName();
+    }
+
 	public String visit(Album album)
     {
         return album.getAlbumName();
