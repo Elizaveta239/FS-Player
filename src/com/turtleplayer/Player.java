@@ -21,8 +21,11 @@ package com.turtleplayer;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
@@ -428,9 +431,12 @@ public class Player extends ListActivity
 
     private void SetupSpeedSensor()
     {
-        this.speedSensor = new SpeedSensor();
-        Thread sensorThread = new Thread(this.speedSensor);
-        sensorThread.start();
+        speedSensor = new SpeedSensor();
+        SensorManager mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        mSensorManager.registerListener(speedSensor,
+                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_UI);
     }
 
 	private void SetupObservers()
