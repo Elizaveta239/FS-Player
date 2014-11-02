@@ -18,6 +18,7 @@
 
 package com.turtleplayer;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -99,6 +100,7 @@ public class Player extends ListActivity
 	private ImageView playButton;
 	private ImageView nextButton;
 	private ImageView shuffleButton;
+    private ImageView speedButton;
 
 	// Settings Slide
 	CheckBox shuffleCheckBox;
@@ -199,6 +201,7 @@ public class Player extends ListActivity
 		backButton = (ImageView) findViewById(com.turtleplayerv2.R.id.backButton);
 		playButton = (ImageView) findViewById(com.turtleplayerv2.R.id.playButton);
 		nextButton = (ImageView) findViewById(com.turtleplayerv2.R.id.nextButton);
+        speedButton = (ImageView) findViewById(com.turtleplayerv2.R.id.speedButton);
 
 		shuffleButton = (ImageView) findViewById(com.turtleplayerv2.R.id.shuffleButton);
 		shuffleCheckBox = (CheckBox) findViewById(com.turtleplayerv2.R.id.shuffleCheckBox);
@@ -345,6 +348,18 @@ public class Player extends ListActivity
 				output.play(tp.playlist.getNext(standartPlayOrderStrategy, output.getCurrTrack()));
 			}
 		});
+
+        speedButton.setOnClickListener(new OutputUsingOnClickListener(tp.player)
+        {
+            @Override
+            public void onClick(View v,Output output)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setMessage("Hello!");
+                AlertDialog alert = builder.create();
+                //alert.show();
+            }
+        });
 
 		shuffleButton.setOnClickListener(new OutputUsingOnClickListener(tp.player)
 		{

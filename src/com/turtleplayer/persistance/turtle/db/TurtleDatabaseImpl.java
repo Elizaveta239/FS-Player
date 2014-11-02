@@ -45,6 +45,7 @@ public abstract class TurtleDatabaseImpl extends SQLiteOpenHelper
 				  + Tables.ArtistsReadable.ARTIST.getName() + " TEXT COLLATE LOCALIZED, "
 				  + Tables.AlbumsReadable.ALBUM.getName() + " TEXT COLLATE LOCALIZED, "
 				  + Tables.GenresReadable.GENRE.getName() + " TEXT, "
+                  + Tables.SpeedReadable.SPEED.getName() + " TEXT, "
 				  + Tables.FsObjects.PATH.getName() + " TEXT, "
 				  + Tables.FsObjects.NAME.getName() + " TEXT, "
 				  + " PRIMARY KEY (" + Tables.Tracks.NAME.getName() + ", " + Tables.Tracks.PATH.getName() + "));";

@@ -59,6 +59,17 @@ public class Tables
 		});
 	}
 
+    //Marker interface
+    public interface SpeedReadable extends View{
+        FieldPersistable<Speed, String> SPEED = new FieldPersistableAsString<Speed>("speed", new Creator<String, Speed>(){
+
+            public String create(Speed speed)
+            {
+                return speed.getSpeedId();
+            }
+        });
+    }
+
 	//Marker interface
 	public interface ArtistsReadable extends View{
 		FieldPersistable<Artist, String> ARTIST = new FieldPersistableAsString<Artist>("artist", new Creator<String, Artist>(){
