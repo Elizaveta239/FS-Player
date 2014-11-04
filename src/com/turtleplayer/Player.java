@@ -18,7 +18,6 @@
 
 package com.turtleplayer;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -351,22 +350,10 @@ public class Player extends ListActivity
 			@Override
 			public void onClick(View v,Output output)
 			{
-                Log.i(Preferences.TAG, String.valueOf(speedSensor.getInfo().getSpeed()));
-				output.play(tp.playlist.getNext(standartPlayOrderStrategy, output.getCurrTrack()));
+                //Log.i(Preferences.TAG, String.valueOf(speedSensor.getInfo().getSpeed()));
+                output.play(tp.playlist.getNext(standartPlayOrderStrategy, output.getCurrTrack()));
 			}
 		});
-
-        speedButton.setOnClickListener(new OutputUsingOnClickListener(tp.player)
-        {
-            @Override
-            public void onClick(View v,Output output)
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setMessage("Hello!");
-                AlertDialog alert = builder.create();
-                //alert.show();
-            }
-        });
 
 		shuffleButton.setOnClickListener(new OutputUsingOnClickListener(tp.player)
 		{
@@ -639,7 +626,7 @@ public class Player extends ListActivity
 				progressBar.setMax(lengthInMillis);
 				duration.setText(ConvertToMinutes(lengthInMillis));
 				tp.playlist.preferences.set(Keys.LAST_TRACK_PLAYED, track.getFullPath());
-                if (track.getSpeedName() == "slow") {
+                if (speedSensor.getInfo().getSpeed() < 500) {
                     speedButton.setImageDrawable(getResources().getDrawable(com.turtleplayerv2.R.drawable.slow));
                 } else {
                     speedButton.setImageDrawable(getResources().getDrawable(com.turtleplayerv2.R.drawable.speed));
