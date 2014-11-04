@@ -4,22 +4,30 @@ package com.turtleplayer.playlist.playorder;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.util.Log;
-import com.turtleplayer.preferences.Preferences;
 
 public class SpeedSensor implements SensorEventListener {
-    private double xy_angle = 0;
-    private double xz_angle = 0;
-    private double zy_angle = 0;
+    private SpeedInfo info;
+    private float xy_angle = 0;
+    private float xz_angle = 0;
+    private float zy_angle = 0;
+
+    public SpeedSensor() {
+        info = new SpeedInfo();
+    }
+
+    public SpeedInfo getInfo() {
+        return info;
+    }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         xy_angle = sensorEvent.values[0];
         xz_angle = sensorEvent.values[1];
         zy_angle = sensorEvent.values[2];
-        double val = Math.sqrt(xy_angle * xy_angle + xz_angle * xz_angle + zy_angle * zy_angle);
+        float val = (float)Math.sqrt(xy_angle * xy_angle + xz_angle * xz_angle + zy_angle * zy_angle);
+        info.addValue(val);
         //String coord = String.valueOf(xy_angle) + " " + String.valueOf(xz_angle) + " " + String.valueOf(zy_angle);
-        Log.i(Preferences.TAG, String.valueOf(val));
+        //Log.i(Preferences.TAG, String.valueOf(val));
     }
 
     @Override

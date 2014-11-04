@@ -351,6 +351,7 @@ public class Player extends ListActivity
 			@Override
 			public void onClick(View v,Output output)
 			{
+                Log.i(Preferences.TAG, String.valueOf(speedSensor.getInfo().getSpeed()));
 				output.play(tp.playlist.getNext(standartPlayOrderStrategy, output.getCurrTrack()));
 			}
 		});
