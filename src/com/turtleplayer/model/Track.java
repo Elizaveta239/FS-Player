@@ -95,9 +95,14 @@ public class Track extends FSobject implements Album, Artist, Genre, Song
 	}
 
     public String getSpeedName()
-    {
-        return speed.getSpeedName();
+	{
+		return speed.getSpeedName();
     }
+
+	public void setSpeed(String s)
+	{
+		speed.setSpeedId(s);
+	}
 
     public String getAlbumName()
 	{

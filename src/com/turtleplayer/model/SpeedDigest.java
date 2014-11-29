@@ -10,7 +10,7 @@ public class SpeedDigest implements Speed
 {
 
     private static final String EMPTY_REPLACMENT= "Unknown";
-    private final String id;
+    private String id;
 
     public SpeedDigest(String id)
     {
@@ -20,6 +20,15 @@ public class SpeedDigest implements Speed
     public String getSpeedId()
     {
         return id;
+    }
+
+    public void setSpeedId(String id)
+    {
+        if (id.equals("slow")) {
+            this.id = id;
+        } else if (id.equals("fast")) {
+            this.id = id;
+        }
     }
 
     public String getSpeedName()

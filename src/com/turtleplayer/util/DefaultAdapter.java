@@ -132,15 +132,43 @@ public class DefaultAdapter<T extends Instance> extends ArrayAdapter<T>
 
 		final ImageView icon = (ImageView) rowView.findViewById(com.turtleplayerv2.R.id.icon);
 
-		final ImageView setSpeedButton = (ImageView) rowView.findViewById(com.turtleplayerv2.R.id.setSpeedButton);
+		if (currObject.getClass().equals(Track.class)) {
+			Track track = (Track) currObject;
+			final ImageView setSpeedButton = (ImageView) rowView.findViewById(com.turtleplayerv2.R.id.setSpeedButton);
 
-		setSpeedButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
+			String speed = track.getSpeedName();
+			if (speed.equals("fast")) {
 				setSpeedButton.setImageDrawable(activity.getResources().
 						getDrawable(com.turtleplayerv2.R.drawable.speed));
+			} else if (speed.equals("slow")) {
+				setSpeedButton.setImageDrawable(activity.getResources().
+						getDrawable(com.turtleplayerv2.R.drawable.slow));
 			}
-		});
+
+			final int pos = position;
+			setSpeedButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					T currObject = getItem(pos);
+					if (currObject.getClass().equals(Track.class)) {
+						Track track = (Track) currObject;
+						String speed = track.getSpeedName();
+						if (speed.equals("fast")) {
+							track.setSpeed("slow");
+							setSpeedButton.setImageDrawable(activity.getResources().
+									getDrawable(com.turtleplayerv2.R.drawable.slow));
+						} else if (speed.equals("slow")) {
+							track.setSpeed("fast");
+							setSpeedButton.setImageDrawable(activity.getResources().
+									getDrawable(com.turtleplayerv2.R.drawable.speed));
+						}
+						notifyDataSetChanged();
+					}
+				}
+			});
+		}
+
+
 
 		currObject.accept(new InstanceVisitor<Object>()
 		{
