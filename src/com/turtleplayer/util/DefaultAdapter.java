@@ -132,6 +132,16 @@ public class DefaultAdapter<T extends Instance> extends ArrayAdapter<T>
 
 		final ImageView icon = (ImageView) rowView.findViewById(com.turtleplayerv2.R.id.icon);
 
+		final ImageView setSpeedButton = (ImageView) rowView.findViewById(com.turtleplayerv2.R.id.setSpeedButton);
+
+		setSpeedButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				setSpeedButton.setImageDrawable(activity.getResources().
+						getDrawable(com.turtleplayerv2.R.drawable.speed));
+			}
+		});
+
 		currObject.accept(new InstanceVisitor<Object>()
 		{
 			public Object visit(Track track)

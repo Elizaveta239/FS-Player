@@ -324,9 +324,6 @@ public class Player extends ListActivity
 			}
 		});
 
-
-
-
 		backButton.setOnClickListener(new OutputUsingOnClickListener(tp.player)
 		{
 			@Override
@@ -871,6 +868,8 @@ public class Player extends ListActivity
 			SwitchToNowPlayingSlide();
 		}
 	}
+
+
 
 // ========================================= //
 	// 	Reset Buttons
